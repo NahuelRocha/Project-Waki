@@ -35,4 +35,9 @@ class JpaUserRepository implements UserRepository {
     public List<User> findAll() {
         return repository.findAll();
     }
+
+    @Override
+    public boolean existsByEmail(Email email) {
+        return repository.existsByEmail(email);
+    }
 }

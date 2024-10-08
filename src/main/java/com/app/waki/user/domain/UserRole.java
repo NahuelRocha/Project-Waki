@@ -1,6 +1,6 @@
 package com.app.waki.user.domain;
 
-enum UserRole {
+public enum UserRole {
     ADMIN,
     USER
 }

@@ -1,4 +1,4 @@
-package com.app.waki.user.infrastructure;
+package com.app.waki.user.application;
 
 import com.app.waki.user.domain.User;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 @RequiredArgsConstructor
-class UserAuth implements UserDetails {
+public class UserAuth implements UserDetails {
 
     private final User user;
     @Override

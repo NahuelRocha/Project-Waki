@@ -1,5 +1,6 @@
 package com.app.waki.user.infrastructure;
 
+import com.app.waki.user.application.UserAuth;
 import com.app.waki.user.domain.Email;
 import com.app.waki.user.domain.User;
 import com.app.waki.user.domain.UserRepository;

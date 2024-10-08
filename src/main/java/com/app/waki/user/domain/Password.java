@@ -4,7 +4,7 @@ import io.jsonwebtoken.lang.Assert;
 import jakarta.persistence.Embeddable;
 
 @Embeddable
-record Password(String password) {
+public record Password(String password) {
     public Password {
         validatePassword(password);
     }

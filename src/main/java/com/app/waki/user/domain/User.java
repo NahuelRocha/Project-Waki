@@ -10,16 +10,17 @@ import lombok.ToString;
 public class User {
 
     @Id
-    private final UserId userId;
+    private  UserId userId;
     @Embedded
-    private final UserName userName;
+    private  UserName userName;
     @Embedded
-    private final Email email;
+    private  Email email;
     @Embedded
-    private final Password password;
+    private  Password password;
     @Enumerated(EnumType.STRING)
-    private final UserRole role;
+    private  UserRole role;
 
+    public User(){}
     public User (UserName userName, Email email, Password password, UserRole userRole) {
         this.userId = new UserId();
         this.userName = userName;
@@ -28,6 +29,15 @@ public class User {
         this.role = userRole;
     }
 
+    public static User createUser(String userName, String email, String password){
+        var username = new UserName(userName);
+        var userEmail = new Email(email);
+        var userPassword = new Password(password);
+        return new User(username, userEmail, userPassword, UserRole.USER);
+    }
+    public String getId(){
+        return this.userId.id().toString();
+    }
     public String getRole(){
         return this.role.name();
     }
@@ -37,5 +47,6 @@ public class User {
     public String getPassword(){
         return this.password.password();
     }
+    public String getUsername(){ return this.userName.name(); }
 
 }

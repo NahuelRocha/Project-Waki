@@ -1,5 +1,6 @@
 package com.app.waki.user.infrastructure;
 
+import com.app.waki.user.application.TokenService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -17,7 +18,7 @@ import java.util.function.Function;
 
 @Service
 @RequiredArgsConstructor
-class JwtService {
+public class JwtService implements TokenService {
 
     private final SecretKeyConfig secretKeyConfig;
 
@@ -45,7 +46,6 @@ class JwtService {
         return extractClaim(token , Claims::getExpiration);
     }
 
-
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
 
         final Claims claims = extractAllClaims(token);
@@ -53,14 +53,12 @@ class JwtService {
         return claimsResolver.apply(claims);
     }
 
+    @Override
     public String generateToken(UserDetails userDetails) {
-
         return generateToken(new HashMap<>(), userDetails);
-
     }
 
     public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
-
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
